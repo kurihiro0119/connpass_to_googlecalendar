@@ -87,9 +87,16 @@ function updateGoogleCalendar(eventId, start, end){
     let resp = UrlFetchApp.fetch(QUERYURL);
     let data = JSON.parse(resp.getContentText());
     //スプレットシートのID
-    let spreadsheet = SpreadsheetApp.openById('1UR78ITCVhCvTwFhHYhi2KMAIXQ6oSbRzYR0z3oZU9jk');
+    let spreadsheet = SpreadsheetApp.openById('<SpreedSheetId>');
     //シート名を指定
-    let sheet = spreadsheet.getSheetByName('日時管理');
+     let sheet;
+    if(spreadsheet.getSheetByName(sheetName)==null){
+        spreadsheet.insertSheet(sheetName);
+        sheet = spreadsheet.getSheetByName(sheetName);
+    }else{
+        sheet = spreadsheet.getSheetByName(sheetName);
+    }
+  consol
     signDeleteKey(sheet);
       
     data.events.forEach((element, index)=> updateSheet(index + 2,element.event_id, element.title, element.started_at, element.ended_at, sheet));
