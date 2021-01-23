@@ -96,7 +96,7 @@ function updateGoogleCalendar(eventId, start, end){
     }else{
         sheet = spreadsheet.getSheetByName(sheetName);
     }
-  consol
+  
     signDeleteKey(sheet);
       
     data.events.forEach((element, index)=> updateSheet(index + 2,element.event_id, element.title, element.started_at, element.ended_at, sheet));
